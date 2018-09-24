@@ -23,11 +23,12 @@
       </div>
     </nav>
     <div class="container">
-
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <br>
+      
+      <h3 class="info-topic"><%= get_flash(@conn, :info) %></h3>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
   
-      <br>
+      
       <main role="main">
         <%= render @view_module, @view_template, assigns %>
       </main>

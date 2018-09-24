@@ -11,3 +11,10 @@
 .navbar-li:hover {
 	background-color: transparent;
 }
+
+.info-topic {
+	width: 100%;
+	text-align: center;
+	border-radius: 5px;
+	padding: 20px 40px;  
+}

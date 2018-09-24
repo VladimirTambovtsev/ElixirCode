@@ -4,6 +4,7 @@
 	<%= for topic <- @topics do %>
 		<li class="collection-item">
 			<%= topic.title %>
+			<a class="right" href="/topics/<%= topic.id %>/edit">Edit</a>
 		</li>
 	<% end %>
 </ul>
