@@ -17,6 +17,9 @@
     <nav class="ligh-blue">
       <div class="nav-wrapper container">
         <a href="/" class="brand-logo">Discuss</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="/topics" class="navbar-li">Topics</a></li>
+        </ul>
       </div>
     </nav>
     <div class="container">
@@ -24,9 +27,12 @@
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
   
+      <br>
       <main role="main">
         <%= render @view_module, @view_template, assigns %>
       </main>
+
+
 
     </div> <!-- /container -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

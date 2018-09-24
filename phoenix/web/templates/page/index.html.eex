@@ -2,3 +2,4 @@
   <h2><%= gettext "Welcome to %{name}", name: "Phoenix!" %></h2>
   <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
 </div>
+<a class="waves-effect waves-light btn right" href="/topics/new">Create Topic +</a>

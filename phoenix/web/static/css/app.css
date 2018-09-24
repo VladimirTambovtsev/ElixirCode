@@ -1,1 +1,13 @@
 /* This file is for your main application css. */
+.help-block {
+	color: #EE6E73;
+	text-transform: capitalize;
+}
+
+.navbar-li {
+	font-size: 16px !important;
+}
+
+.navbar-li:hover {
+	background-color: transparent;
+}
