@@ -19,6 +19,11 @@
         <a href="/" class="brand-logo">Discuss</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a href="/topics" class="navbar-li">Topics</a></li>
+          <%= if @conn.assigns[:user] do %>
+            <%= link "Logout", class: "btn", to: auth_path(@conn, :signout) %>
+          <% else %>
+            <%= link "Sign in with Github", class: "btn", to: auth_path(@conn, :request, "github") %>
+          <% end %>          
         </ul>
       </div>
     </nav>
