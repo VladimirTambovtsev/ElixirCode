@@ -4,8 +4,8 @@
 	<%= for topic <- @topics do %>
 		<li class="collection-item">
 			<%= topic.title %>
-			<%= link "Delete", method: :delete, class: "right btn", to: topic_path(@conn, :delete, topic) %>
-			<a class="right waves-effect waves-light btn" href="/topics/<%= topic.id %>/edit">Edit</a>
+			<%= link "Delete", method: :delete, class: "right", to: topic_path(@conn, :delete, topic) %>
+			<a class="right" href="/topics/<%= topic.id %>/edit">Edit</a>
 		</li>
 	<% end %>
 </ul>
