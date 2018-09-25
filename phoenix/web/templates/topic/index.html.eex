@@ -3,7 +3,7 @@
 <ul class="collection">
 	<%= for topic <- @topics do %>
 		<li class="collection-item">
-			<%= topic.title %>
+			<a href="/topics/<%= topic.id %>"><%= topic.title %></a>
 
 			<%= if @conn.assigns.user.id == topic.user_id do %>
 			<%= link "Delete", method: :delete, class: "right", to: topic_path(@conn, :delete, topic) %>
