@@ -25,9 +25,9 @@ defmodule Servy.Handler do
 		%{ conv | status: 200, resp_body: "Bears, Lions, Tigers" }
 	end
 
-	def route(%Conv{ method: "GET", path: "/bears" } = conv) do
-		params = %{ "name" => "Baloo", "type" => "Brown" }
-		%{ conv | status: 200, resp_body: "Bears list \n params: #{params["name"]}" }
+	# read params
+	def route(%Conv{ method: "POST", path: "/bears" } = conv) do
+		%{ conv | status: 201, resp_body: "Bears list \n params: #{conv.params["type"]} and #{conv.params["name"]}" }
 	end
 
 	def route(%Conv{ method: "GET", path: "/bears" <> id } = conv) do
@@ -74,7 +74,7 @@ defmodule Servy.Handler do
 end
 
 request = """
-GET /bears HTTP/1.1
+POST /bears HTTP/1.1
 Host: example.com
 User-Agent: ExampleBrowser/1.0
 Accept: */*
