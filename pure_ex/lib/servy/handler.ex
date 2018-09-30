@@ -1,4 +1,11 @@
 defmodule Servy.Handler do
+	@pages_path Path.expand("../../pages", __DIR__)		# creates constanst
+
+	import Servy.Plugins, only: [rewrite_path: 1, log: 1, track: 1]
+	import Servy.Parser
+	@moduledoc "Handles HTTP request"
+
+	@doc "Transform the request into response"
 	def handle(request) do
 		request 
 		|> parse 
@@ -9,35 +16,13 @@ defmodule Servy.Handler do
 		|> format_response
 	end
 
-	def log(conv), do: IO.inspect conv
 
-	def rewrite_path(%{ path: "/wildthings" } = conv) do
-		%{ conv | path: "/wildthings" }
-	end
-
-	def rewrite_path(conv), do: conv
-
-	def track(%{status: 404, path: path} = conv) do
-		IO.puts "Warning, #{path} is on the loose"
-		conv
-	end
-
-	def track(conv), do: conv
-
-	def parse(request) do
-		[method, path, _] =		# _ = request.protocol
-			request 
-			|> String.split("\n") 
-			|> List.first
-			|> String.split(" ")
-		
-		%{ method: method, path: path, resp_body: "", status: nil }
-	end
 
 	# def route(conv) do
 	# 	route(conv, conv.method, conv.path)
 	# end
 
+	@doc "Respond on /wildthings path"
 	def route(%{ method: "GET", path: "/wildthings" } = conv) do
 		%{ conv | status: 200, resp_body: "Bears, Lions, Tigers" }
 	end
@@ -50,9 +35,9 @@ defmodule Servy.Handler do
 		%{conv | status: 200, resp_body: "Bear #{id}"}
 	end
 
-
+	@doc "Serve static file as a response"
 	def route(%{method: "GET", path: "/about"} = conv) do
-	  Path.expand("../../pages", __DIR__)
+	  @pages_path
 	  |> Path.join("about.html")
 	  |> File.read
 	  |> handle_file(conv)
@@ -91,7 +76,7 @@ defmodule Servy.Handler do
 		%{ conv | status: 404, resp_body: "No #{path} here" }
 	end
 
-
+	@doc "Show current response"
 	def format_response(conv) do
 		"""
 		HTTP/1.1 #{conv.status} #{status_reason(conv.status)}
