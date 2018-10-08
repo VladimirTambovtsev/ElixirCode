@@ -1,0 +1,9 @@
+<h1>All the list</h1>
+
+<ul>
+	<li>Name - Brown</li>
+	<li>Name - Yellow</li>
+	<li>Name - Green</li>
+</ul>
+
+<%= inspect(bears) %>
