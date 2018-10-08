@@ -4,5 +4,5 @@ defmodule GraphqlApiWeb.Schema.Types do
 	alias GraphqlApiWeb.Schema.Types
 
 	import_types(Types.Usertype)
-
+	import_types(Types.SessionType)
 end
