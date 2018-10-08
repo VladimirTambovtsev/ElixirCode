@@ -2,6 +2,7 @@ defmodule GraphqlApiWeb.Schema do
 	use Absinthe.Schema
 
 	alias GraphqlApiWeb.Resolvers
+	alias GraphqlApiWeb.Schema.Middleware
 
 	# import Types
 	import_types(GraphqlApiWeb.Schema.Types)
@@ -9,6 +10,7 @@ defmodule GraphqlApiWeb.Schema do
 	query do
 		@desc "Get a list of all users"
 		field :users, list_of(:user_type) do
+			middleware(Middleware.Authorize, :any)
 			resolve(&Resolvers.UserResolver.users/3)
 		end
 	end
